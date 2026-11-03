@@ -10,7 +10,20 @@ void zad3();
 void zad4();
 void zad5();
 void zad6();
+void zad7();
+void zad8();
+void zad9();
 
+template<std::size_t ROWS, std::size_t COLS>
+void print_matrix(const int (&matrix)[ROWS][COLS]) {
+	for (std::size_t row = 0; row < ROWS; ++row) {
+		for (std::size_t col = 0; col < COLS; ++col) {
+			std::cout << matrix[row][col] << " ";
+		}
+		std::cout << "\n";
+	}
+	std::cout << '\n';
+}
 int main()
 {
 	std::srand(time(0));
@@ -21,7 +34,10 @@ int main()
 	//zad3();
 	//zad4();
 	//zad5();
-	zad6();
+	//zad6();
+	//zad7();
+	//zad8();
+	zad9();
 	return 0;
 }
 void zad1() {
@@ -154,10 +170,96 @@ void zad6() {
 
 	int result[ROWS][COLS] = {};
 
-	for (std::size_t i = 0; i < ROWS; ++i) {
-		for (std::size_t j = 0; j < COLS; ++j) {
-		std::cout << matrix1[i][j] << " ";
+	print_matrix<ROWS, COLS>(matrix1);
+	
+	print_matrix<ROWS, COLS>(matrix2);
+
+	print_matrix<ROWS, COLS>(result);
+
+	for (std::size_t row = 0; row < ROWS; ++row) {
+		for (std::size_t col = 0; col < COLS; ++col) {
+			result[row][col] =  matrix1[row][col] + matrix2[row][col];
 		}
-		std::cout << "\n";
 	}
+
+	print_matrix<ROWS, COLS>(result);
+}
+
+
+void zad7() {
+	const int ROWS = 3, COLS = 3;
+	int matrix1[ROWS][COLS] = {
+		{1,2,3},
+		{3,4,5},
+		{6,7,8},
+	};
+
+	int matrix2[ROWS][COLS] = {
+		{1,2,3},
+		{3,4,5},
+		{6,7,8},
+	};
+
+	int result[ROWS][COLS] = {};
+
+	print_matrix<ROWS, COLS>(matrix1);
+
+	print_matrix<ROWS, COLS>(matrix2);
+
+	print_matrix<ROWS, COLS>(result);
+
+	for (std::size_t row = 0; row < ROWS; ++row) {
+		for (std::size_t col = 0; col < COLS; ++col) {
+			result[row][col] = matrix1[row][col] * matrix2[row][col];
+		}
+	}
+
+	print_matrix<ROWS, COLS>(result);
+}
+
+
+void zad8() {
+	const int ROWS = 3, COLS = 3;
+	int matrix[ROWS][COLS] = {
+		{1,2,3},
+		{3,4,5},
+		{6,7,8},
+	};
+	int sum{ 0 };
+	for (std::size_t row = 0; row < ROWS; ++row) {
+		for (std::size_t col = 0; col < COLS; ++col) {
+			if (row == col) {
+				std::cout << matrix[row][col] << " ";
+				sum += matrix[row][col];
+			}
+		}
+	}
+	std::cout << "sum: " << sum << '\n';
+}
+
+void zad9() {
+	int arr[10] = {3, 5,1,6,4,3,1,7,8,3};
+	//for (std::size_t i = 0; i < std::size(arr); ++i) {
+	//	std::cout << "Liczba " << i << ": ";
+	//	std::cin >> arr[i];
+	//}
+	for (const auto& el : arr) {
+		std::cout << el << " ";
+	}
+	std::cout << "\n";
+
+
+	for (std::size_t i = 0; i < std::size(arr)-1; ++i) {
+		for (std::size_t j = 0; j < std::size(arr) - 1 - i; ++j) {
+			if (arr[j] > arr[j + 1]) {
+				int t = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = t;
+			}
+		}
+	}
+	for (const auto& el : arr) {
+		std::cout << el << " ";
+	}
+	std::cout << "\n";
 }
