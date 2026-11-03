@@ -8,15 +8,20 @@ void zad1();
 void zad2();
 void zad3();
 void zad4();
-
+void zad5();
+void zad6();
 
 int main()
 {
 	std::srand(time(0));
+
+
 	//zad1();
 	//zad2();
 	//zad3();
-	zad4();
+	//zad4();
+	//zad5();
+	zad6();
 	return 0;
 }
 void zad1() {
@@ -61,15 +66,15 @@ void zad3() {
 
 	double avarage;
 	int sum{0};
-	for (auto& el : arr) {
+	for (const auto& el : arr) {
 		std::cout << el << " ";
 
 		sum += el;
 	}
 	std::cout << "\n";
-	avarage =  static_cast<double>(sum) / static_cast<double>(std::size(arr));
+	avarage = static_cast<double>(sum) / static_cast<double>(std::size(arr));
 	int larger{ 0 }, smaller{ 0 };
-	for (auto& el : arr) {
+	for (const auto& el : arr) {
 		if (el > avarage) {
 			++larger;
 		}
@@ -79,7 +84,7 @@ void zad3() {
 
 	}
 	int min = arr[0], max = arr[0];
-	for (auto& el : arr) {
+	for (const auto& el : arr) {
 		if (el < min) {
 			min = el;
 		}
@@ -108,7 +113,7 @@ void zad4() {
 		std::cin >> input;
 		arr[i] = input;
 	}
-	for (auto el : arr) {
+	for (const auto el : arr) {
 		std::cout << el << " ";
 	}
 }
@@ -116,5 +121,43 @@ void zad4() {
 void zad5() {
 	int arr[10] = {};
 
+	for (auto& el : arr) {
+		el = std::rand() % 10;
+	}
+	int lucky_num = std::rand() % 10;
+	int count{ 0 };
+	for (const auto& el : arr) {
+		if (lucky_num == el) {
+			++count;
+		}
+		std::cout << el << " ";
+	}
 	
+	std::cout << "\n Lucky: " << lucky_num 
+			  <<"\n Count: " << count << "\n";
+
+}
+
+void zad6() {
+	const int ROWS = 3, COLS = 3;
+	int matrix1[ROWS][COLS] = {
+		{1,2,3},
+		{3,4,5},
+		{6,7,8},
+	};
+
+	int matrix2[ROWS][COLS] = {
+		{1,2,3},
+		{3,4,5},
+		{6,7,8},
+	};
+
+	int result[ROWS][COLS] = {};
+
+	for (std::size_t i = 0; i < ROWS; ++i) {
+		for (std::size_t j = 0; j < COLS; ++j) {
+		std::cout << matrix1[i][j] << " ";
+		}
+		std::cout << "\n";
+	}
 }
